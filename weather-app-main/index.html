@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Weather app</title>
+  <style>
+       * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       }
+       body {
+    background-color: #1a1641;
+    color: white;
+    padding: 40px;
+       }
+       .logo{
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        vertical-align: middle;
+       }
+       .day-time img{
+         width: 24px;
+        height: 24px;
+        object-fit: contain;
+        vertical-align: middle;
+
+       }
+       .day-select img{
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        vertical-align: middle;
+       }
+       .hour-item img{
+         width: 24px;
+        height: 24px;
+        object-fit: contain;
+        vertical-align: middle;
+       }
+       .search-btn1 img{
+         width: 24px;
+        height: 24px;
+        object-fit: contain;
+        vertical-align: middle;
+       }
+       .icon img{
+         width: 80px;
+        height: 80px;
+        object-fit: contain;
+        vertical-align: middle;
+       }
+       
+       .container {
+    max-width: 1000px;
+    margin: auto;
+       }
+       header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+       }
+       h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+       }
+       .search-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+       }
+       input {
+    background: #1e2128;
+    border: 1px solid #333;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    width: 400px;
+     }
+     .search-btn1{
+        background: #31313e;
+        border: 0;
+        border-radius: 6px;
+        width: 10cm;
+        color: rgba(167, 142, 142, 0.523);
+        text-align: left;
+     }
+     .search-btn2 {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+     }
+     .search-btn2:hover {
+        background: #3a7bd5;
+        transform: scale(0.8);
+        transition: background-color 2s ease;
+     }
+    .units{
+        background: #31313e;
+        border: 0;
+        border-radius: 6px;
+        height: 34px;
+        width: 90px;
+        color: aliceblue;
+    }
+    .main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    }
+    .hero-card {
+    background-image: url(assets/images/bg-today-large.svg);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 5cm;
+   }
+   .degree {
+    font-size: 80px;
+    font-weight: bold;
+   }
+   .details-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 30px;
+    }
+    .detail-card {
+    background: rgb(33, 35, 44);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 4cm;
+    }
+    .detail-card p {
+    display: block;
+    color: #888;
+    margin-bottom: 5px;
+    }
+    .detail-card b {
+        font-size: 20px;
+    }
+    .daily-row{
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        
+        
+    }
+    .day-time{
+        background: #1e2128;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+    .hourly-forecast{
+        background: #1e2128;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    .hour-item{
+        display: flex;
+        justify-content: space-between;
+        background: #31313e;
+        height: 1.0cm;
+        align-items: end;
+        border-radius: 5px;
+        
+    }
+    .hour-list{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+    .day-select{
+        background: #31313e;
+        border: 0;
+        border-radius: 5px;
+        color: white;
+        margin: 9px;
+        margin-left: 80px;
+        width: 80px;
+        height: 30px;
+    }
+    .selec{
+        background: #31313e;
+        color: aliceblue;
+        border: 0;
+        border-radius: 6px;
+        height: 0.9cm;
+        align-items: start;
+        display: flex;
+        margin-left: 180px;
+        margin-bottom: 10px;
+    }
+    
+
+  </style>
+
+</head>
+  <body>
+     <div class="container">
+        <header>
+            <div class="logo"><img src="assets/images/logo.svg" alt="logo"></div>
+            <div class="units-btn">
+            <select name="units" id="units" class="units">
+                <img src="assets/images/icon-units.svg" alt="units">
+        <option>units</option>
+        <option value="monday">Switch to Imperial/Metric</option>
+        <option value="tuesday">Temperature</option>
+        <option value="wednesday"> Celsius (°C)
+                             Fahrenheit (°F)</option>
+        <option value="thursday">Wind Speed km/h
+                                            mph</option>
+        <option value="friday">Precipitation</option>
+        <option value="saturday">Millimeters (mm)
+                                 Inches (in)</option>
+
+    </select>
+    </div>
+        </header>
+
+        <h1>How's the sky looking today?</h1>
+
+        <div class="search-container">
+            <button class="search-btn1"><img src="assets/images/icon-search.svg" alt="search">Search for a place...</button>
+            <button class="search-btn2">Search</button>
+        </div>
+
+        <div class="main-layout">
+            <div class="weather-left">
+                <div class="hero-card">
+                    <div class="location-info">
+                        <h2>Berlin, Germany</h2>
+                        <p>Tuesday, Aug 5, 2025</p>
+                    </div>
+                    <div class="temp-main">
+                        <span class="icon"><img src="assets/images/icon-sunny.webp" alt="sunny"></span>
+                        <span class="degree">20°</span>
+                    </div>
+                </div>
+
+                <div class="details-flex">
+                    <div class="detail-card"><p>Feels Like</p><span><b>18°</b></span></div>
+                    <div class="detail-card"><p>Humidity</p><span><b>46%</b></span></div>
+                    <div class="detail-card"><p>Wind</p><span><b>14 km/h</b></span></div>
+                    <div class="detail-card"><p>Precipitation</p><span><b>0 mm</b></span></div>
+                </div>
+
+                <div class="daily-forecast">
+                    <h3>Daily forecast</h3>
+                    <div class="daily-row">
+                        <div class="day-time">Tue <span><img src="assets/images/icon-rain.webp" alt="rain"></span> 20° 14°</div>
+                        <div class="day-time">Wed <span><img src="assets/images/icon-drizzle.webp" alt="drizzle"></span> 21° 15°</div>
+                        <div class="day-time">Thu <span><img src="assets/images/icon-sunny.webp" alt="sunny"></span> 24° 14°</div>
+                        <div class="day-time">Fri <span><img src="assets/images/icon-partly-cloudy.webp" alt="partly cloudy"></span> 25° 13°</div>
+                        <div class="day-time">Sat<span><img src="assets/images/icon-storm.webp" alt="storm">21° 15°</span></div>
+                        <div class="day-time">Sun<span><img src="assets/images/icon-snow.webp" alt="snow"></span>25° 16°</div>
+                        <div class="day-time">Mon<span><img src="assets/images/icon-fog.webp" alt="fog"></span>24° 15°</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="hourly-forecast">
+                <div class="aside-header">
+                    <span>Hourly forecast</span>
+                    <div class="selector">
+                    <select name="days" id="days" class="selec">
+                          <option value=""> days</option>
+                          <option value="monday">monday</option>
+                          <option value="tuesday">tuesday</option>
+                          <option value="wednesday">wednesday</option>
+                          <option value="thursday">thursday</option>
+                          <option value="friday">friday</option>
+                          <option value="saturday">saturday</option>
+                          <option value="sunday">sunday</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="hour-list">
+                    <div class="hour-item"><span><img src="assets/images/icon-overcast.webp" alt="overcast">3 PM</span>  20°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-partly-cloudy.webp" alt="partly cloudy">4 PM</span>  20°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-sunny.webp" alt="sunny">5 PM</span>  20°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-overcast.webp" alt="overcast">6 PM</span>  19°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-drizzle.webp" alt="drizzle">7 PM</span>  18°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-fog.webp" alt="fog">8 PM</span> 18°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-drizzle.webp" alt="drizzle">9 PM</span> 17°</div>
+                    <div class="hour-item"><span><img src="assets/images/icon-overcast.webp" alt="overcast">10 PM</span> 17°</div>
+                </div>
+            </aside>
+        </div>
+    </div>
+  </body>
+</html>
+
